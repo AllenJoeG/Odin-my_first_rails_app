@@ -1,6 +1,12 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
 
+# Each of the 7 RESTful routes correspond to a controller definition here
+# They can be specified in the following way - or see how implemented above to restrict options
+# resources :cars, only: [:index, :show]
+# resources :cars, except: [:index]
+#
+
   # GET /cars or /cars.json
   def index
     @cars = Car.all
