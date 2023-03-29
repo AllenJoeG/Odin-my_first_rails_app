@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+
+  # Reference source https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root to: "articles#index"
+
   # Spins up seven core REST routes for the specified model
   # index, show, new, edit, create, update, destroy
-  resources :cars
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :cars, :cats
 
   # Resources can be nested like so:
 
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
   #   belongs_to :magazine
   # end
   
+
   # Or can capture relationship in one line:
 
   # resources :magazines do
@@ -21,6 +27,7 @@ Rails.application.routes.draw do
   # end
   # e.g. /magazines/:magazine_id/ads/ (ads#index)
   #  or  /magazines/:magazine_id/ads/:id/edit  (ads#edit)
+
 
   # Can also use 'shallow' method to prevent deeply nested routes
   
@@ -36,6 +43,5 @@ Rails.application.routes.draw do
   
 
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+
 end
