@@ -21,7 +21,8 @@ class CatsController < ApplicationController
 
   # POST /cats or /cats.json
   def create
-    @cat = Cat.new(cat_params)
+    # Passing params through the permitting helper function validate_cat_params to hash only the requisite params
+    @cat = Cat.new(validate_cat_params)
 
     respond_to do |format|
       if @cat.save
@@ -37,7 +38,7 @@ class CatsController < ApplicationController
   # PATCH/PUT /cats/1 or /cats/1.json
   def update
     respond_to do |format|
-      if @cat.update(cat_params)
+      if @cat.update(validate_cat_params)
         format.html { redirect_to cat_url(@cat), notice: "Cat was successfully updated." }
         format.json { render :show, status: :ok, location: @cat }
       else
@@ -64,7 +65,7 @@ class CatsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def cat_params
+    def validate_cat_params
       params.require(:cat).permit(:name, :color, :age)
     end
 end

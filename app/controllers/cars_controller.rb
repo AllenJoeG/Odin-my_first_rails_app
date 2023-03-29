@@ -27,7 +27,8 @@ class CarsController < ApplicationController
 
   # POST /cars or /cars.json
   def create
-    @car = Car.new(car_params)
+    # Passing params through the permitting helper function validate_car_params to hash only the requisite params
+    @car = Car.new(validate_car_params)
 
     respond_to do |format|
       if @car.save
@@ -43,7 +44,7 @@ class CarsController < ApplicationController
   # PATCH/PUT /cars/1 or /cars/1.json
   def update
     respond_to do |format|
-      if @car.update(car_params)
+      if @car.update(validate_car_params)
         format.html { redirect_to car_url(@car), notice: "Car was successfully updated." }
         format.json { render :show, status: :ok, location: @car }
       else
@@ -70,7 +71,7 @@ class CarsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def car_params
+    def validate_car_params
       params.require(:car).permit(:make, :model, :year)
     end
 end
